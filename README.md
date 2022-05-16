@@ -161,11 +161,11 @@ The relevant parameters correspond to the `local packaging command`, please refe
 
 To upload to `Releases`, you need to add `GITHUB_TOKEN` and `GH_TOKEN` to the repository and set `Workflow read and write permissions`, see the [instructions for details](router-config#2-set-the-privacy-variable-github_token).
 
-| Parameter                                | For example             | Description                   |
-|------------------------------------------|-------------------------|-------------------------------|
-| ${{ env.PACKAGED_OUTPUTPATH }}           | out                     | OpenWrt firmware storage path |
-| ${{ env.PACKAGED_OUTPUTDATE }}           | 2021.04.13.1058         | Packing date                  |
-| ${{ env.PACKAGED_STATUS }}               | success / failure       | Package status                |
+| Parameter                                | For example         | Description                         |
+|------------------------------------------|---------------------|-------------------------------------|
+| ${{ env.PACKAGED_OUTPUTPATH }}           | out                 | OpenWrt firmware storage path       |
+| ${{ env.PACKAGED_OUTPUTDATE }}           | 04.13.1058          | Packing date(month.day.hour.minute) |
+| ${{ env.PACKAGED_STATUS }}               | success / failure   | Package status                      |
 
 ## Compile the kernel
 
