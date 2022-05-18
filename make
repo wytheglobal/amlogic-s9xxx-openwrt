@@ -10,7 +10,6 @@
 #
 # Description: Automatically Packaged OpenWrt for Amlogic s9xxx tv box
 # Copyright (C) 2020- https://github.com/unifreq
-# Copyright (C) 2020- https://github.com/tuanqing/mknop
 # Copyright (C) 2020- https://github.com/ophub/amlogic-s9xxx-openwrt
 #
 # Command: sudo ./make -d
@@ -724,7 +723,7 @@ loop_make() {
             {
                 echo -n "(${j}.${i}) Start making OpenWrt [ ${b} - ${k} ]. "
 
-                now_remaining_space=$(df -hT ${PWD} | grep '/dev/' | awk '{print $5}' | sed 's/.$//' | awk -F "." '{print $1}')
+                now_remaining_space=$(df -hT ${make_path} | grep '/dev/' | awk '{print $5}' | sed 's/.$//' | awk -F "." '{print $1}')
                 if [[ "${now_remaining_space}" -le "2" ]]; then
                     echo "Remaining space is less than 2G, exit this making. \n"
                     break
@@ -759,11 +758,11 @@ loop_make() {
 
 # Show welcome message
 echo -e "Welcome to tools for making Amlogic s9xxx OpenWrt! \n"
-[ $(id -u) = 0 ] || error_msg "please run this script as root: [ sudo ./$0 ]"
+[[ "$(id -u)" == "0" ]] || error_msg "please run this script as root: [ sudo ./$0 ]"
 # Show server start information
 echo -e "Server CPU configuration information: \n$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
 echo -e "Server memory usage: \n$(free -h) \n"
-echo -e "Server space usage before starting to compile: \n$(df -hT ${PWD}) \n"
+echo -e "Server space usage before starting to compile: \n$(df -hT ${make_path}) \n"
 #
 # Initialize variables and download the kernel
 init_var "${@}"
@@ -779,6 +778,6 @@ echo -e "Kernel List: [ $(echo ${build_kernel[*]} | tr "\n" " ") ] \n"
 loop_make
 #
 # Show server end information
-echo -e "Server space usage after compilation: \n$(df -hT ${PWD}) \n"
+echo -e "Server space usage after compilation: \n$(df -hT ${make_path}) \n"
 # All process completed
 wait
