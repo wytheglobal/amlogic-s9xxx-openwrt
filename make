@@ -104,14 +104,14 @@ init_var() {
 
     while [ -n "${1}" ]; do
         case "${1}" in
-        -d | --default)
+        -d | --Default)
             : ${build_openwrt:="${build_openwrt}"}
             : ${build_kernel:="${build_kernel}"}
             : ${auto_kernel:="${auto_kernel}"}
             : ${version_branch:="${version_branch}"}
             : ${ROOT_MB:="${ROOT_MB}"}
             ;;
-        -b | --buildSoC)
+        -b | --BuildSoC)
             if [ -n "${2}" ]; then
                 if [[ "${2}" != "all" ]]; then
                     unset build_openwrt
@@ -125,7 +125,7 @@ init_var() {
                 error_msg "Invalid -b parameter [ ${2} ]!"
             fi
             ;;
-        -k | --kernel)
+        -k | --Kernel)
             if [ -n "${2}" ]; then
                 oldIFS=$IFS
                 IFS=_
@@ -136,7 +136,7 @@ init_var() {
                 error_msg "Invalid -k parameter [ ${2} ]!"
             fi
             ;;
-        -a | --autoKernel)
+        -a | --AutoKernel)
             if [ -n "${2}" ]; then
                 auto_kernel="${2}"
                 shift
@@ -144,7 +144,7 @@ init_var() {
                 error_msg "Invalid -a parameter [ ${2} ]!"
             fi
             ;;
-        -v | --versionBranch)
+        -v | --VersionBranch)
             if [ -n "${2}" ]; then
                 version_branch="${2}"
                 shift
@@ -152,7 +152,7 @@ init_var() {
                 error_msg "Invalid -v parameter [ ${2} ]!"
             fi
             ;;
-        -s | --size)
+        -s | --Size)
             if [[ -n "${2}" && "${2}" -ge "512" ]]; then
                 ROOT_MB="${2}"
                 shift
