@@ -167,20 +167,6 @@ To upload to `Releases`, you need to add `GITHUB_TOKEN` and `GH_TOKEN` to the re
 | ${{ env.PACKAGED_OUTPUTDATE }}           | 04.13.1058          | Packing date(month.day.hour.minute) |
 | ${{ env.PACKAGED_STATUS }}               | success / failure   | Package status                      |
 
-## Compile the kernel
-
-For the compilation method of the kernel, see [compile-kernel](https://github.com/ophub/amlogic-s9xxx-armbian/tree/main/compile-kernel)
-
-```yaml
-- name: Compile the kernel for Amlogic s9xxx
-  uses: ophub/amlogic-s9xxx-armbian@main
-  with:
-    build_target: kernel
-    kernel_version: 5.15.25_5.10.100
-    kernel_auto: true
-    kernel_sign: -ophub
-```
-
 ## openwrt-*-rootfs.tar.gz Firmware compilation parameters
 
 | Option | Value |
@@ -201,6 +187,20 @@ For the compilation method of the kernel, see [compile-kernel](https://github.co
 | Default password | password |
 | Default WIFI name | OpenWrt |
 | Default WIFI password | none |
+
+## Compile the kernel
+
+For the compilation method of the kernel, see [compile-kernel](https://github.com/ophub/amlogic-s9xxx-armbian/tree/main/compile-kernel)
+
+```yaml
+- name: Compile the kernel for Amlogic s9xxx
+  uses: ophub/amlogic-s9xxx-armbian@main
+  with:
+    build_target: kernel
+    kernel_version: 5.15.25_5.10.100
+    kernel_auto: true
+    kernel_sign: -ophub
+```
 
 ## Resource Description
 
