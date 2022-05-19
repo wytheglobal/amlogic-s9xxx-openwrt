@@ -763,6 +763,7 @@ echo -e "Welcome to tools for making Amlogic s9xxx OpenWrt! \n"
 echo -e "Server CPU configuration information: \n$(cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c) \n"
 echo -e "Server memory usage: \n$(free -h) \n"
 echo -e "Server space usage before starting to compile: \n$(df -hT ${make_path}) \n"
+echo -e "Setting parameters: [ ${@} ] \n"
 #
 # Initialize variables and download the kernel
 init_var "${@}"
