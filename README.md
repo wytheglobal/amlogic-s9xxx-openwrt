@@ -1,10 +1,10 @@
-# OpenWrt for Amlogic s9xxx tv box
+# OpenWrt for Amlogic TV Boxes
 
 View Chinese description  |  [查看中文说明](README.cn.md)
 
 The [OpenWrt](https://openwrt.org/) Project is a Linux router operating system targeting embedded devices. Instead of trying to create a single, static firmware, OpenWrt provides a fully writable filesystem with package management. Allows you to freely choose the software package you need to customize your router system. For developers, OpenWrt is the framework to build an application without having to build a complete firmware around it; for users this means the ability for full customization, to use the device in ways never envisioned. It has more than 3000+ standardized application packages and a very rich third-party plug-in support, so you can easily replicate the same setup on any supported device.
 
-Now you can replace the Android TV system of the TV box with the Amlogic chip with the OpenWrt system, making it a powerful router. This project supports one-stop complete compilation of github.com (compiling from custom software packages to packaging firmware, all in one stop at giuhub.com). Support localized packaging (firmware packaging in local Ubuntu and other environments). including OpenWrt firmware install to EMMC and update related functions. Support Amlogic s9xxx tv box are ***`a311d, s922x, s905x3, s905x2, s905l3a, s912, s905d, s905x, s905w, s905`***, etc. such as ***`Belink GT-King, Belink GT-King Pro, UGOOS AM6 Plus, X96-Max+, HK1-Box, H96-Max-X3, Phicomm-N1, Octopus-Planet, Fiberhome HG680P, ZTE B860H`***, etc.
+Now you can replace the Android TV system of the TV Boxes with the Amlogic chip with the OpenWrt system, making it a powerful router. This project supports one-stop complete compilation of github.com (compiling from custom software packages to packaging firmware, all in one stop at giuhub.com). Support localized packaging (firmware packaging in local Ubuntu and other environments). including OpenWrt firmware install to EMMC and update related functions. Support Amlogic s9xxx TV Boxes are ***`a311d, s922x, s905x3, s905x2, s905l3a, s912, s905d, s905x, s905w, s905`***, etc. such as ***`Belink GT-King, Belink GT-King Pro, UGOOS AM6 Plus, X96-Max+, HK1-Box, H96-Max-X3, Phicomm-N1, Octopus-Planet, Fiberhome HG680P, ZTE B860H`***, etc.
 
 The latest version of the OpenWrt firmware can be downloaded in [Releases](https://github.com/ophub/amlogic-s9xxx-openwrt/releases). Welcome to use `Fork` for [personalized OpenWrt firmware configuration](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/router-config/README.md). If you like it, Please click the `Star`.
 
@@ -23,11 +23,11 @@ The latest version of the OpenWrt firmware can be downloaded in [Releases](https
 | s905 | [Beelink-Mini-MX-2G](https://www.gearbest.com/tv-box-mini-pc/pp_321409.html), [MXQ-PRO+4K](https://www.gearbest.com/tv-box-mini-pc/pp_354313.html) | All | openwrt_s905_k*.img |
 | s905l3a | [E900V22C/D](https://github.com/Calmact/e900v22c) | All | openwrt_s905l3a_k*.img |
 
-💡Tip: The current ***`s905w`*** series of boxes only support the use of the `5.15.y` kernel, and cannot use the 5.10.y or higher version. Other types of boxes can use optional kernel versions. Currently ***`s905`*** boxes can only be used in `TF/SD/USB`, other types of boxes also support writing to `EMMC`. Please refer to the [instructions](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-docs/config_correspondence_of_amlogic_s9xxx_tv_box.md) for dtb and u-boot of each device.
+💡Tip: The current ***`s905w`*** series of TV Boxes only support the use of the `5.15.y` kernel, and cannot use the 5.10.y or higher version. Other types of TV Boxes can use optional kernel versions. Currently ***`s905`*** TV Boxes can only be used in `TF/SD/USB`, other types of TV Boxes also support writing to `EMMC`. Please refer to the [instructions](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-docs/config_correspondence_of_amlogic_s9xxx_tv_box.md) for dtb and u-boot of each device.
 
 ## Install to EMMC and update instructions
 
-Choose the corresponding firmware according to your box. Then write the IMG file to the USB hard disk through software such as [Rufus](https://rufus.ie/) or [balenaEtcher](https://www.balena.io/etcher/). Insert the USB hard disk into the box. Common for all `Amlogic s9xxx tv box`.
+Choose the corresponding firmware according to your box. Then write the IMG file to the USB hard disk through software such as [Rufus](https://rufus.ie/) or [balenaEtcher](https://www.balena.io/etcher/). Insert the USB hard disk into the box. Common for all `Amlogic s9xxx TV Boxes`.
 
 - ### Install OpenWrt
 
@@ -151,7 +151,7 @@ The relevant parameters correspond to the `local packaging command`, please refe
 | Parameter          | Defaults          | Description                                                   |
 |--------------------|-------------------|---------------------------------------------------------------|
 | openwrt_path     | no                | Set the file path of `openwrt-armvirt-64-default-rootfs.tar.gz` , you can use a relative path such as `openwrt/bin/targets/*/*/*rootfs.tar.gz` or the network file download address. E.g `https://github.com/*/releases/*/*rootfs.tar.gz` |
-| openwrt_soc        | s905d_s905x3      | Set the `SoC` of the packaging box, function reference `-b` |
+| openwrt_soc        | s905d_s905x3      | Set the `SoC` of the packaging TV Boxes, function reference `-b` |
 | openwrt_kernel     | 5.15.25_5.10.100   | Set the kernel version，function reference `-k` |
 | auto_kernel        | true              | Set whether to automatically adopt the latest version of the kernel of the same series. function reference `-a`  |
 | version_branch     | stable            | Specify the name of the kernel [version branch](https://github.com/ophub/kernel/tree/main/pub), function reference `-v` |
@@ -206,7 +206,7 @@ For the compilation method of the kernel, see [compile-kernel](https://github.co
 
 When making an OpenWrt system, the [kernel](https://github.com/ophub/kernel) and [u-boot](https://github.com/ophub/amlogic-s9xxx-armbian/tree/main/build-armbian/amlogic-u-boot) files used are the same files used to make an [Armbian](https://github.com/ophub/amlogic-s9xxx-armbian) system. In order to avoid repeated maintenance, the relevant content is classified and placed in the corresponding resource repository, and it will be automatically downloaded from the relevant repository when it is used.
 
-The `kernel` / `u-boot` and other resources used by this system are mainly copied from the project of [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit), Some files are shared by users in [Pull](https://github.com/ophub/amlogic-s9xxx-openwrt/pulls) and [Issues](https://github.com/ophub/amlogic-s9xxx-openwrt/issues) of [amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt) / [amlogic-s9xxx-armbian](https://github.com/ophub/amlogic-s9xxx-armbian) / [luci-app-amlogic](https://github.com/ophub/luci-app-amlogic) / [kernel](https://github.com/ophub/kernel) and other projects. `unifreq` opened the door for us to use OpenWrt in TV boxes, and was deeply influenced by him. My firmware has inherited his consistent standards in production and use. To thank these pioneers and sharers, I have recorded them in [CONTRIBUTOR.md](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/CONTRIBUTOR.md). Thanks again everyone for giving new life and meaning to the box.
+The `kernel` / `u-boot` and other resources used by this system are mainly copied from the project of [unifreq/openwrt_packit](https://github.com/unifreq/openwrt_packit), Some files are shared by users in [Pull](https://github.com/ophub/amlogic-s9xxx-openwrt/pulls) and [Issues](https://github.com/ophub/amlogic-s9xxx-openwrt/issues) of [amlogic-s9xxx-openwrt](https://github.com/ophub/amlogic-s9xxx-openwrt) / [amlogic-s9xxx-armbian](https://github.com/ophub/amlogic-s9xxx-armbian) / [luci-app-amlogic](https://github.com/ophub/luci-app-amlogic) / [kernel](https://github.com/ophub/kernel) and other projects. `unifreq` opened the door for us to use OpenWrt in TV Boxes, and was deeply influenced by him. My firmware has inherited his consistent standards in production and use. To thank these pioneers and sharers, I have recorded them in [CONTRIBUTOR.md](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/CONTRIBUTOR.md). Thanks again everyone for giving new life and meaning to the Boxes.
 
 ## Acknowledgments
 
