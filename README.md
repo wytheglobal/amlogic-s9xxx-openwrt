@@ -23,7 +23,7 @@ The latest version of the OpenWrt firmware can be downloaded in [Releases](https
 | s905 | [Beelink-Mini-MX-2G](https://www.gearbest.com/tv-box-mini-pc/pp_321409.html), [MXQ-PRO+4K](https://www.gearbest.com/tv-box-mini-pc/pp_354313.html) | All | openwrt_s905_k*.img |
 | s905l3a | [E900V22C/D](https://github.com/Calmact/e900v22c) | All | openwrt_s905l3a_k*.img |
 
-💡Tip: The current ***`s905w`*** series of TV Boxes only support the use of the `5.15.y` kernel, and cannot use the 5.10.y or higher version. Other types of TV Boxes can use optional kernel versions. Currently ***`s905`*** TV Boxes can only be used in `TF/SD/USB`, other types of TV Boxes also support writing to `EMMC`. Please refer to the [instructions](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-docs/config_correspondence_of_amlogic_s9xxx_tv_box.md) for dtb and u-boot of each device.
+💡Tip: The current ***`s905w`*** series of TV Boxes only support the use of the `5.15.y` kernel, and cannot use the 5.10.y or higher version. Other types of TV Boxes can use optional kernel versions. Currently ***`s905`*** TV Boxes can only be used in `TF/SD/USB`, other types of TV Boxes also support writing to `EMMC`. Please refer to the [instructions](https://github.com/ophub/amlogic-s9xxx-armbian/blob/main/build-armbian/armbian-docs/amlogic_model_database.md) for dtb and u-boot of each device.
 
 ## Install to EMMC and update instructions
 
