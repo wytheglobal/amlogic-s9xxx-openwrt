@@ -406,8 +406,6 @@ extract_armbian() {
     process_msg " (3/7) Extract armbian files."
     cd ${make_path}
 
-    kernel_dir="${kernel_path}/${kernel}"
-
     root="${tmp_path}/${kernel}/${soc}/root"
     boot="${tmp_path}/${kernel}/${soc}/boot"
     mkdir -p ${root} ${boot}
@@ -429,22 +427,25 @@ extract_armbian() {
     # Copy the overload files
     cp -f ${uboot_path}/overload/* ${boot}
 
-    # Process kernel files
-    if [ -f ${kernel_dir}/boot-* -a -f ${kernel_dir}/dtb-amlogic-* -a -f ${kernel_dir}/modules-* ]; then
-        tar -xzf ${kernel_dir}/dtb-amlogic-*.tar.gz -C ${boot}/dtb/amlogic
+    # Replace the kernel
+    build_boot="$(ls ${kernel_path}/${kernel}/boot-${kernel}-*.tar.gz 2>/dev/null | head -n 1)"
+    build_dtb="$(ls ${kernel_path}/${kernel}/dtb-amlogic-${kernel}-*.tar.gz 2>/dev/null | head -n 1)"
+    build_modules="$(ls ${kernel_path}/${kernel}/modules-${kernel}-*.tar.gz 2>/dev/null | head -n 1)"
+    [[ -n "${build_boot}" && -n "${build_dtb}" && -n "${build_modules}" ]] || error_msg "The 3 kernel missing."
 
-        tar -xzf ${kernel_dir}/boot-*.tar.gz -C ${boot}
-        cp -f ${boot}/uInitrd-* ${boot}/uInitrd && cp -f ${boot}/vmlinuz-* ${boot}/zImage 2>/dev/null
-        get_textoffset "${boot}/zImage"
+    # 01. For /boot five files
+    tar -xzf ${build_boot} -C ${boot} && sync
+    [[ "$(ls ${boot}/*-${kernel}-* -l 2>/dev/null | grep "^-" | wc -l)" -ge "4" ]] || error_msg "The /boot files is missing."
+    (cd ${boot} && cp -f uInitrd-* uInitrd && cp -f vmlinuz-* zImage && sync)
+    get_textoffset "${boot}/zImage"
 
-        mkdir -p ${boot}/dtb/amlogic ${root}/lib/modules
-        tar -xzf ${kernel_dir}/modules-*.tar.gz -C ${root}/lib/modules
-        cd ${root}/lib/modules/*/
-        rm -rf *.ko
-        find ./ -type f -name '*.ko' -exec ln -s {} ./ \;
-    else
-        error_msg "Have no kernel files in [ ${kernel_dir} ]"
-    fi
+    # 02. For /boot/dtb/amlogic/*
+    tar -xzf ${build_dtb} -C ${boot}/dtb/amlogic && sync
+
+    # 03. For /lib/modules/*
+    tar -xzf ${build_modules} -C ${root}/lib/modules && sync
+    (cd ${root}/lib/modules/${kernel}-*/ && rm -f build source *.ko 2>/dev/null && find ./ -type f -name '*.ko' -exec ln -s {} ./ \; && sync)
+    [[ "$(ls ${root}/lib/modules/${kernel}-* -l 2>/dev/null | grep "^d" | wc -l)" -eq "1" ]] || error_msg "Missing kernel."
     sync
 }
 
