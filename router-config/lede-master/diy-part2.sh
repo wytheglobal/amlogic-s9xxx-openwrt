@@ -39,6 +39,7 @@ svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/
 # svn export https://github.com/openwrt/packages/trunk/utils/runc/Makefile ./feeds/packages/utils/runc/Makefile
 
 git clone https://github.com/fw876/helloworld package/luci-app-ssr-plus
+sed -i 's/luci-lib-ipkg/luci-base/g' package/luci-app-ssr-plus/luci-app-ssr-plus/Makefile
 
 # coolsnowwolf default software package replaced with Lienol related software package
 # rm -rf feeds/packages/utils/{containerd,libnetwork,runc,tini}
